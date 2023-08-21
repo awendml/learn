@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"" >
+    <title>Learn vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="detail-order">
+            <h1>Dibawah ini detail pesanan anda</h1>
+            <br>
+            <img :src="cover" width="100px">
+            <h3>{{ name }}</h3>
+            Jumlah <input type="number" min="1" max="10" v-model:value="jml">
+            Total : Rp.{{ price * jml }}
+        </div>
+        <hr>
+        <label for=""><input type="checkbox" v-model:value="showBonus">Bonus</label>
+        <div class="detail" v-if="showBonus">
+            <p v-if="jml >= 10">Maaf anda hanya boleh memesan dengan jumlah {{ jml }}</p>
+            <p v-else-if="jml >=5">Wah anda membeli dengan jumlah yang banyak</p>
+            <p v-else-if="jml >=2">Selamat anda mendapatkan bonus karena membeli sebanyak {{ jml }}</p>
+            <p v-else>Untuk mendapatkan bonus, silahkan pesan lagi</p>
+        </div>
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                showBonus:true,
+                name: "Buku belajar vue",
+                cover: "https://www.petanikode.com/img/buku/vue.avif",
+                price: 10000,
+                jml:1,
+            }
+        })
+    </script>
+</body>
+</html>
